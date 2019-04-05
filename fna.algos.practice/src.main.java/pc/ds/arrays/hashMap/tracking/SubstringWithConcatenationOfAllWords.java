@@ -25,7 +25,8 @@ public class SubstringWithConcatenationOfAllWords {
 	 **/
 
 	// https://leetcode.com/problems/substring-with-concatenation-of-all-words/discuss/13658/Easy-Two-Map-Solution-(C%2B%2BJava)
-	// O(mn) time complexity. 'n' is size of string s, and 'm' is length of word len. Thanks for sharing, seems Leetcode is OK with O(mn) solution here.
+	// O(mn) time complexity. 'n' is size of string s, and 'm' is length of word len. 
+	// Thanks for sharing, seems Leetcode is OK with O(mn) solution here.
 	public static List<Integer> findSubstring(String s, String[] words) {
 		final Map<String, Integer> counts = new HashMap<>();
 		for (final String word : words) {

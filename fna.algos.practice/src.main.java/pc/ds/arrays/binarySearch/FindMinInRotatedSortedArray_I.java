@@ -21,7 +21,8 @@ public class FindMinInRotatedSortedArray_I {
 				return num[start];
 
 			int mid = (start + end) / 2;
-
+			// In a sorted rotated array, there has to be one sorted half and another unsorted half
+			// Idea is to look for the minimum element in unsorted half
 			if (num[mid] >= num[start]) { // wondering why equals sign is here then go to part II of this problem.
 				start = mid + 1;
 			} else {

@@ -43,6 +43,7 @@ public class GuessNumberHigherOrLower {
 
 	public static int guess(int x) {
 		return (x == luckyNumber) ? 0 : (x < luckyNumber) ? -1 : 1;
+		// return x - luckyNumber;
 	}
 
 	public static void main(String[] args) {

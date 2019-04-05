@@ -93,7 +93,7 @@ public class MedianOfTwoSortedArrayOfDifferentLength {
         while (iMin <= iMax) {
             i = (iMin + iMax) / 2;
             j = k - 1 - i; // because of zero based index
-            if (B[j - 1] > A[i]) {
+            /*if (B[j - 1] > A[i])*/ if (i < lenA && B[j - 1] > A[i]) {
                 // i is too small, must increase it
                 iMin = i + 1;
             } else if (i > 0 && A[i - 1] > B[j]) {

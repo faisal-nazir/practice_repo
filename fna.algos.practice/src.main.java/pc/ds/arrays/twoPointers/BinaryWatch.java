@@ -50,6 +50,15 @@ public class BinaryWatch {
 		return count;
 	}
 	
+	public static int count_ON_bits(int n) {
+		int count = 0; // count accumulates the total bits set
+		while (n != 0) {
+			count += n & 1;
+			n = n >> 1;
+		}
+		return count;
+	}
+	
 	// look at the other backtracking version of the solutions as well.
 	// https://leetcode.com/problems/binary-watch/discuss/88456/3ms-Java-Solution-Using-Backtracking-and-Idea-of-%22Permutation-and-Combination%22
 	public static void main(String[] args) {
@@ -57,6 +66,6 @@ public class BinaryWatch {
 //			System.out.print("There are " + count_set_bits(n) + " one bits in " + n + ".");
 //			System.out.println();
 //		}
-		count_set_bits(7);
+		System.out.print(count_ON_bits(15));
 	}
 }

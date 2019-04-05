@@ -75,6 +75,8 @@ public class LongestSubStringWithoutRepeatingCharacter {
 		return d;
 	}
 	
+	
+	
 	public static void main(String[] args) {
 		String input =  "bacabcabcdaab";
 		System.out.println(lengthOfLongestSubstring_01(input));

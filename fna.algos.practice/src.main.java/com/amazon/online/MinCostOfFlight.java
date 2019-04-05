@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
 
-public class MInCostOfFlight {
+public class MinCostOfFlight {
 
 	public int minCost(String flights, String from, String to, int k) {
         if(from == to) return 0;

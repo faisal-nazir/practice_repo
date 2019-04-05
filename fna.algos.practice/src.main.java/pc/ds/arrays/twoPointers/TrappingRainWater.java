@@ -20,7 +20,8 @@ public class TrappingRainWater {
 	public static int trap(int[] height) {
 		int ans = 0;
 		int size = height.length;
-		for (int i = 1; i < size - 1; i++) {
+		for (int i = 1; i < size - 1; i++) { // loop start from '1' and ends before last element coz
+			// first and last bar cannot trap any water by themselves.
 			int max_left = 0, max_right = 0;
 			for (int j = i; j >= 0; j--) { // Search the left part for max bar
 											// size
