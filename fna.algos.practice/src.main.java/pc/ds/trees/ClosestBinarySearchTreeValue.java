@@ -20,6 +20,7 @@ Input: root = [4,2,5,1,3], target = 3.714286
 **/
 
 public class ClosestBinarySearchTreeValue {
+	// https://leetcode.com/problems/closest-binary-search-tree-value/discuss/70331/Clean-and-concise-java-solution
 	public int closestValue(TreeNode root, double target) {
 	    int ret = root.val;   
 	    while(root != null){

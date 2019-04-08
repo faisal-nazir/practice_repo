@@ -7,6 +7,25 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
+/** Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+
+Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+
+Example: 
+
+You may serialize the following tree:
+
+    1
+   / \
+  2   3
+     / \
+    4   5
+
+as "[1,2,3,null,null,4,5]"
+Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
+
+Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
+**/
 public class SerializeTree {
 
 	private static final String splitter = ",";
@@ -19,7 +38,19 @@ public class SerializeTree {
 		return sb.toString();
 	}
 	
-	// in-order strategy doesn't work
+	// changing it to pre-order
+	public static void serialize(TreeNode root, StringBuilder sb) {
+		if(root == null) {
+			sb.append(NN).append(splitter);
+		} else {
+			sb.append(root.val).append(splitter);
+			serialize(root.left, sb);
+//				sb.append(root.value).append(splitter);
+			serialize(root.right, sb);
+		}
+	}
+	
+	// in-order strategy doesn't work (why??)
 	public static TreeNode deSerialize(String s) {
 		if(s == null || s.isEmpty()) return null;
 		String[] arr = s.split(splitter);
@@ -56,17 +87,7 @@ public class SerializeTree {
 	}
 	
 	
-	// changing it to pre-order
-	public static void serialize(TreeNode root, StringBuilder sb) {
-		if(root == null) {
-			sb.append(NN).append(splitter);
-		} else {
-			sb.append(root.val).append(splitter);
-			serialize(root.left, sb);
-//			sb.append(root.value).append(splitter);
-			serialize(root.right, sb);
-		}
-	}
+	
 	
 	public static void main(String[] args) {
 		TreeNode root = new TreeNode(4);

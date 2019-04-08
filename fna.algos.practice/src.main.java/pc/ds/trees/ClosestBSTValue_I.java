@@ -2,7 +2,7 @@ package pc.ds.trees;
 
 import common.utils.TreeNode;
 
-public class ClosestBSTValue {
+public class ClosestBSTValue_I {
 
 	private static class Result {
 		int diffSoFar = Integer.MAX_VALUE;
