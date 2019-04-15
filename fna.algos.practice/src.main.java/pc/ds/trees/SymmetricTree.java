@@ -1,5 +1,8 @@
 package pc.ds.trees;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 import common.utils.TreeNode;
 /** Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
 
@@ -51,4 +54,26 @@ public class SymmetricTree {
 				
 		return root;
 	}
+	
+	public boolean isSymmetric_iterative(TreeNode root) {
+	       if(root == null) return true;
+	      Deque<TreeNode> st = new LinkedList<>();
+	      st.addFirst(root.left);
+	      st.addFirst(root.right);
+	      while(!st.isEmpty()) {
+	          TreeNode t1,t2;
+	          t1= st.removeFirst();
+	          t2 = st.removeFirst();
+	          if(t1 == null && t2 == null && st.isEmpty()) break;
+	          if(t1 == null && t2 == null && !st.isEmpty()) continue;
+	          if(t1 == null && t2 != null) return false;
+	          if(t1 != null && t2 == null) return false;
+	          if(t1.val != t2.val) return false;
+	          st.addFirst(t1.left);
+	          st.addFirst(t2.right);                        
+	          st.addFirst(t1.right);
+	          st.addFirst(t2.left);
+	      }
+	      return true;
+	  }
 }

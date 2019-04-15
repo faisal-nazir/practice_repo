@@ -34,14 +34,14 @@ Return false.
 public class BalancedBinaryTree {
 
 	public boolean isBalanced(TreeNode root) {
-        return lengthOf(root) >= 0;
+        return heightOf(root) >= 0;
     }
     
-    public int lengthOf(TreeNode root) {
+    public int heightOf(TreeNode root) {
         if(root == null)    return 0;
         
-        int left = lengthOf(root.left);
-        int right = lengthOf(root.right);
+        int left = heightOf(root.left);
+        int right = heightOf(root.right);
         
         if(left < 0 || right < 0)   return -1;
         if(Math.abs(left - right) > 1)  return -1;

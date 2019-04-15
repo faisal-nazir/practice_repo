@@ -27,8 +27,8 @@ Output:
 
 public class SubSets_II {
 
-	public static Set<List<Integer>> getSubsets(int[] nums) {
-		Set<List<Integer>> subSets = new HashSet<List<Integer>>();
+	public static List<List<Integer>> getSubsets(int[] nums) {
+		List<List<Integer>> subSets = new ArrayList<List<Integer>>();
 		List<Integer> setSoFar = new ArrayList<Integer>();
 		int idx = 0;
 		Arrays.sort(nums);
@@ -36,21 +36,27 @@ public class SubSets_II {
 		return subSets;
 	}
 
-	public static void helper(Set<List<Integer>> subSets, int[] nums, List<Integer> currSet, int start) {
-		if(start == nums.length) {
+	public static void helper(List<List<Integer>> subSets, int[] nums,
+			List<Integer> currSet, int start) {
+		if (start == nums.length) {
 			subSets.add(new ArrayList<Integer>(currSet));
 			return;
 		}
-		currSet.add(nums[start]); // make a choice
-		helper(subSets, nums, currSet, start+1); // recurse on this choice
-		currSet.remove(currSet.size()-1); // un-choose
-		helper(subSets, nums, currSet, start+1); // recurse
+		
+		Set<Integer> s = new HashSet<Integer>(); 
+		if(!s.contains(nums[start])) {
+			currSet.add(nums[start]); // make a choice
+			helper(subSets, nums, currSet, start + 1); // recurse on this choice
+			currSet.remove(currSet.size() - 1); // un-choose
+			helper(subSets, nums, currSet, start + 1); // recurse
+			
+		}
 		
 	}
 	
 	public static void main(String[] args) {
 		int[] nums = {1, 2, 2};
-		Set<List<Integer>> subSets = getSubsets(nums);
+		List<List<Integer>> subSets = getSubsets(nums);
 		for(List<Integer> set : subSets) {
 			System.out.print("{ ");
 			for(int i : set) {

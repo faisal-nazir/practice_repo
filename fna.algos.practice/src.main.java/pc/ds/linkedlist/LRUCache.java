@@ -31,7 +31,7 @@ import java.util.Map;
 // for description and reason to use doubley linked list, refer to
 // https://leetcode.com/problems/lru-cache/discuss/45911/Java-Hashtable-%2B-Double-linked-list-(with-a-touch-of-pseudo-nodes)
 public class LRUCache {
-    int capacity;
+    int size;
     int maxCapacity;
     
     Node head;
@@ -41,7 +41,7 @@ public class LRUCache {
     
     public LRUCache(int capacity) {
         maxCapacity = capacity;    
-        capacity = 0;
+        size = 0;
         head = tail = null;
     }
     
@@ -56,8 +56,8 @@ public class LRUCache {
         Node h = map.get(key);
         if(h == null) {
             h = new Node(key, value);
-            if(capacity < maxCapacity)
-                ++capacity;
+            if(size < maxCapacity)
+                ++size;
             else {
                 map.remove(tail.key);
                 removeTail();

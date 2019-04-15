@@ -75,7 +75,7 @@ public class KClosestPointsToOrigin {
     
     // using heap
     public int[][] kClosest_03(int[][] points, int K) {
-        PriorityQueue<int[]> heap = new PriorityQueue<int[]>(points.length, new Comparator<int[]>() {
+        PriorityQueue<int[]> maxHeap = new PriorityQueue<int[]>(points.length, new Comparator<int[]>() {
 			public int compare(int[] p1, int[] p2) {
         		int dist1 = p1[0] * p1[0] + p1[1] * p1[1];
         		int dist2 = p2[0] * p2[0] + p2[1] * p2[1];
@@ -83,14 +83,14 @@ public class KClosestPointsToOrigin {
         	}
 		});
 		for(int[] point : points) {
-			heap.offer(point);
-			if(heap.size() > K) {
-				heap.poll();
+			maxHeap.offer(point);
+			if(maxHeap.size() > K) {
+				maxHeap.poll();
 			}
 		}
 		int[][] res = new int[K][2];
 	    while (K > 0) {
-	        res[--K] = heap.poll();
+	        res[--K] = maxHeap.poll();
 	    }
 	    return res;
     }

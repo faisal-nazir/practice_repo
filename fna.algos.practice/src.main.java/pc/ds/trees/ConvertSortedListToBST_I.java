@@ -29,7 +29,7 @@ public class ConvertSortedListToBST_I {
 			return null;
 		}
 		int size = getSizeOf(head);
-		
+		node = head;
 		return inorderHelper(0, size - 1);
 	}
 	

@@ -8,7 +8,7 @@ public class TopKFrequentWords {
 	// asked by 'CarGurus' during telephone session
 	public static List<String> getFrequentElements(List<String> vins, int k){
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		Queue<Map.Entry<String, Integer>> q = new PriorityQueue<Map.Entry<String, Integer>>
+		Queue<Map.Entry<String, Integer>> minHeap = new PriorityQueue<Map.Entry<String, Integer>>
 														(k, new Comparator<Entry<String, Integer>> () {
 				public int compare(Entry<String, Integer> e1, Entry<String, Integer> e2) {
 					int diff = e1.getValue() - e2.getValue();
@@ -23,14 +23,14 @@ public class TopKFrequentWords {
 		}
 		
 		for(Entry<String, Integer> e : map.entrySet()) {
-			q.add(e);
-			if(q.size() > k) {
-				q.poll();
+			minHeap.add(e);
+			if(minHeap.size() > k) {
+				minHeap.poll();
 			}
 		}
 		
 		while(k > 0) {
-			result.add(q.poll().getKey());
+			result.add(minHeap.poll().getKey());
 			k--;
 		}
 		

@@ -7,7 +7,8 @@ import java.util.Map;
 Each person buys one ice cream, which sells for $5. 
 Each customer is holding a bill of $5, $10 or $20. 
 Your initial balance is 0. 
-Find whether you will be able to make change for every customer in the queue. You must serve customers in the order they come in. 
+Find whether you will be able to make change for every customer in the queue.
+ You must serve customers in the order they come in. 
 For example 
 5, 5, 5, 10, 20 -> true, 
 5, 5, 10 -> true, 
