@@ -48,17 +48,14 @@ public class Permutation_II {
 			return;
 		}
 
-		//Set<Integer> set = new HashSet<Integer>();
+		Set<Integer> seen = new HashSet<Integer>();
 		for (int i = k; i < num.length; ++i) {
-			//if (!set.contains(num[i])) {
-				//System.out.println("h(" + i + " , " + k + ")");
-				//set.add(num[i]);
-				if(i+1 < num.length && num[i] == num[i+1]) continue;
+			if (!seen.contains(num[i])) {
+				seen.add(num[i]);
 				swap(num, i, k);
 				permute(num, k + 1, perm);
 				swap(num, i, k);
-			//}
-
+			}
 		}
 	}
 

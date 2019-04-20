@@ -26,11 +26,11 @@ import java.util.PriorityQueue;
  */
 
 //https://leetcode.com/problems/kth-largest-element-in-a-stream/discuss/149050/Java-Priority-Queue
-class KthLargest {
+class KthLargestElementInAStream {
 	final PriorityQueue<Integer> q;
 	final int k;
 
-	public KthLargest(int k, int[] a) {
+	public KthLargestElementInAStream(int k, int[] a) {
 		this.k = k;
 		q = new PriorityQueue<>(k);
 		for (int n : a)

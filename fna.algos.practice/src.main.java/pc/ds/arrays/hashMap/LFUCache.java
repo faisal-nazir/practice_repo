@@ -43,7 +43,7 @@ public class LFUCache {
         return vals.get(key); // return the value to the user
     }
     
-    public void set(int key, int value) {
+    public void put(int key, int value) {
         if(cap<=0)
             return;
         if(vals.containsKey(key)) {

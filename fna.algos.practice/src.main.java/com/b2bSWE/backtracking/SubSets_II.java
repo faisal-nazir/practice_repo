@@ -32,6 +32,7 @@ public class SubSets_II {
 		List<Integer> setSoFar = new ArrayList<Integer>();
 		int idx = 0;
 		Arrays.sort(nums);
+		Set<Integer> seen = new HashSet<Integer>();  
 		helper(subSets, nums, setSoFar, idx);
 		return subSets;
 	}
@@ -42,21 +43,44 @@ public class SubSets_II {
 			subSets.add(new ArrayList<Integer>(currSet));
 			return;
 		}
-		
-		Set<Integer> s = new HashSet<Integer>(); 
-		if(!s.contains(nums[start])) {
-			currSet.add(nums[start]); // make a choice
-			helper(subSets, nums, currSet, start + 1); // recurse on this choice
-			currSet.remove(currSet.size() - 1); // un-choose
-			helper(subSets, nums, currSet, start + 1); // recurse
-			
+		Set<Integer> seen = new HashSet<Integer>();
+		for(int i = 0; i < nums.length; ++i) {
+			if(!seen.contains(nums[start])) {
+				seen.add(nums[start]);
+				currSet.add(nums[start]); // make a choice
+				helper(subSets, nums, currSet, start + 1); // recurse on this choice
+				currSet.remove(currSet.size() - 1); // un-choose
+				helper(subSets, nums, currSet, start + 1); // recurse
+			}
 		}
 		
+		
+	}
+	
+	public static  List<List<Integer>> subsets(int[] nums) {
+	    List<List<Integer>> list = new ArrayList<>();
+	    Arrays.sort(nums);
+	    backtrack(list, new ArrayList<Integer>(), nums, 0);
+	    return list;
+	}
+
+	private static void backtrack(List<List<Integer>> list , List<Integer> tempList, int [] nums, int start){
+	    list.add(new ArrayList<>(tempList));
+	    Set<Integer> seen = new HashSet<Integer>();
+	    
+	    for(int i = start; i < nums.length; i++){
+	    	if(!seen.contains(nums[i])) {
+	    		seen.add(nums[i]);
+		        tempList.add(nums[i]);
+		        backtrack(list, tempList, nums, i + 1);
+		        tempList.remove(tempList.size() - 1);
+	    	}
+	    }
 	}
 	
 	public static void main(String[] args) {
 		int[] nums = {1, 2, 2};
-		List<List<Integer>> subSets = getSubsets(nums);
+		List<List<Integer>> subSets = subsets(nums);
 		for(List<Integer> set : subSets) {
 			System.out.print("{ ");
 			for(int i : set) {
