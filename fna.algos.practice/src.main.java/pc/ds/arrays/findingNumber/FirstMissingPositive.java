@@ -34,6 +34,22 @@ public class FirstMissingPositive {
 
 		return n + 1;
 	}
+	
+	public static int solve(int[] A) {
+		int i = 0;
+		int n = A.length;
+        while (i < n)
+        {
+            if (A[i] > 0 && A[i] <= n && A[A[i] - 1] != A[i])
+                swap(A, A[i], A[A[i]-1]);
+            else
+                i++;
+        }
+        for (i = 0; i < n; ++i)
+            if (A[i] != (i+1))
+                return i+1;
+        return n+1;
+	}
 
 	public static void swap(int[] arr, int i, int j) {
 		int t = arr[i];
@@ -42,13 +58,17 @@ public class FirstMissingPositive {
 	}
 	
 	public static void main(String[] args) {
-		int[] input = {1,3,0};
-		System.out.println(firstMissingPositive(input));
-		input = new int[]{ -1, -2, 3,1 };
-		System.out.println(firstMissingPositive(input));
-		input = new int[] { 7,9,10, 11 };
-		System.out.println(firstMissingPositive(input));
-		input = new int[] { 3,4,-1,1 };
+//		int[] input = {1,3,0};
+//		System.out.println(firstMissingPositive(input));
+//		input = new int[]{ -1, -2, 3,1 };
+//		System.out.println(firstMissingPositive(input));
+//		input = new int[] { 7,9,10, 11 };
+//		System.out.println(firstMissingPositive(input));
+//		input = new int[] { 3,4,-1,1 };
+//		System.out.println(firstMissingPositive(input));
+		
+		
+		int[] input = {-3, 1, 0, -4, 1, 4};
 		System.out.println(firstMissingPositive(input));
 	}
 }

@@ -31,8 +31,7 @@ public class SubSets_II {
 		List<List<Integer>> subSets = new ArrayList<List<Integer>>();
 		List<Integer> setSoFar = new ArrayList<Integer>();
 		int idx = 0;
-		Arrays.sort(nums);
-		Set<Integer> seen = new HashSet<Integer>();  
+		Arrays.sort(nums);  
 		helper(subSets, nums, setSoFar, idx);
 		return subSets;
 	}

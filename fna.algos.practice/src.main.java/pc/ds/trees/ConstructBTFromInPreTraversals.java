@@ -30,7 +30,7 @@ public class ConstructBTFromInPreTraversals {
         for(int i=0; i<inorder.length; ++i)
             inOrderMap.put(inorder[i], i);
             
-        return buildTree(preorder, inOrderMap, 0, preorder.length - 1, 0);
+        return buildTree(preorder, inOrderMap, 0, inorder.length - 1, 0);
     }
     
     public static TreeNode buildTree(int[] preOrder, Map<Integer, Integer> inOrderMap, int start, int end, int preIndex) {
