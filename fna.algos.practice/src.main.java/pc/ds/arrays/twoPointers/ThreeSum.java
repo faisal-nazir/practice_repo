@@ -1,9 +1,7 @@
 package pc.ds.arrays.twoPointers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
 
 public class ThreeSum {
 	/**
@@ -22,7 +20,7 @@ public class ThreeSum {
 	 * A solution set is: [ [-1, 0, 1], [-1, -1, 2] ]
 	 **/
 
-	public List<List<Integer>> threeSum(int[] nums) {
+	public static List<List<Integer>> threeSum(int[] nums) {
 		List<List<Integer>> res = new ArrayList<>();
 		Arrays.sort(nums);
 		for (int i = 0; i + 2 < nums.length; i++) {
@@ -48,6 +46,23 @@ public class ThreeSum {
 			}
 		}
 		return res;
+	}
+	
+	public static void main(String[] args) {
+		int[] nums = { 1, 3, 2, -4, -4};
+		List<List<Integer>> triplets = threeSum(nums);
+		
+		print(triplets);
+	}
+	
+	private static void print(List<List<Integer>> triplets) {
+		for(List<Integer> t : triplets) {
+			Iterator<Integer> itr = t.iterator();
+			while(itr.hasNext()) {
+				System.out.print(itr.next() + " ");
+			}
+			System.out.println();
+		}
 	}
 
 	// https://leetcode.com/problems/3sum/discuss/7380/Concise-O(N2)-Java-solution

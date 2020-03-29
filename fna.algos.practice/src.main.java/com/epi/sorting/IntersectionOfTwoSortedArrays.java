@@ -10,8 +10,8 @@ public class IntersectionOfTwoSortedArrays {
 		Set<Integer> res = new HashSet<>();
 		
 		for(int i = 0; i < smaller.size(); ++i) {
-			if(i == 0 || Collections.binarySearch(larger, smaller.get(i)) >= 0 &&
-					smaller.get(i) != smaller.get(i-1)) {
+			if(Collections.binarySearch(larger, smaller.get(i)) >= 0 &&
+					((i == 0) || (smaller.get(i) != smaller.get(i-1)))) {
 				res.add(smaller.get(i));
 			}
 		}

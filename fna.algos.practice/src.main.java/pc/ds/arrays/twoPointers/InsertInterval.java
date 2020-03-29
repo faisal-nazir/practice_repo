@@ -19,6 +19,7 @@ public class InsertInterval {
 	Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 	**/
 	
+	// Check out on leetcode - Laiq's java submission - simpler than the one below
 	private static class Interval {
 		int start;
 		int end;

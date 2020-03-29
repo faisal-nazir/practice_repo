@@ -3,6 +3,14 @@ package com.epi.sorting;
 import java.util.*;
 
 public class RenderACalendar {
+	
+	// EPI-14.4: Render a calendar
+	
+	// same as MeetingRoom_II (search for this class in the workspace)
+	// https://leetcode.com/problems/meeting-rooms-ii/discuss/67857/AC-Java-solution-using-min-heap
+	// https://leetcode.com/problems/meeting-rooms-ii/discuss/67855/Explanation-of-%22Super-Easy-Java-Solution-Beats-98.8%22-from-%40pinkfloyda
+	
+	
 	private static class Event {
 		int startTime;
 		int endTime;

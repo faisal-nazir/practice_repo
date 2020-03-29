@@ -3,7 +3,7 @@ package com.epi.sorting;
 import java.util.Arrays;
 import java.util.List;
 
-public class MergeSortedArrays {
+public class MergeTwoSortedArrays {
 
 	public static void merge(List<Integer> bigger, int m, List<Integer> smaller, int n) {
 		int write_idx = m+n-1, bi = m-1, si= n-1;

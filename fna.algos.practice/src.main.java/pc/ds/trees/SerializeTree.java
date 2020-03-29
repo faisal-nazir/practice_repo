@@ -26,6 +26,8 @@ Clarification: The above format is the same as how LeetCode serializes a binary 
 
 Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
 **/
+
+// https://leetcode.com/problems/serialize-and-deserialize-binary-tree/discuss/74253/Easy-to-understand-Java-Solution
 public class SerializeTree {
 
 	private static final String splitter = ",";

@@ -17,6 +17,19 @@ public class ReverseBits {
 				
 	}
 	
+//	public static int reverseBits(int x) {
+//		int res = 0;
+//		for(int i = 1; i <= 16; ++i)  {
+//			int l = 1 << (31-i);
+//			int r = 1 << i;
+//			if((x&l) !=  (x&r)) {
+//				x ^= l;
+//				x ^= r;
+//			}
+//		}
+//		 
+//	}
+	
 	public static void main(String[] args) {
 		List<Integer> list = Arrays.asList(1, 2, 3, 4);
 		for(int i : list) {

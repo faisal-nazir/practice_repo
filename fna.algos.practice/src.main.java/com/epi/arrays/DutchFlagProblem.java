@@ -24,7 +24,7 @@ public class DutchFlagProblem {
 	}
 	
 	public static void main(String[] args) {
-		int[] A = {2,  1, 0, 1, -1, 3, 4 };
+		int[] A = {1,  2, 0, 1, -1, 3, 4 };
 		// {4,  1, 0, 1, -1, 3, 2 }
 		// {-1,  0, 1, 1, 3, 4, 2 }
 		print(partition(A, 1));
