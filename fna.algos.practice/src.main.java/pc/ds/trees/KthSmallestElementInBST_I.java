@@ -1,5 +1,7 @@
 package pc.ds.trees;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 import common.utils.TreeNode;
@@ -106,5 +108,50 @@ public class KthSmallestElementInBST_I {
 	      
 	      return -1; // never hit if k is valid
 	}
-
+	
+	// https://leetcode.com/explore/interview/card/top-interview-questions-medium/108/trees-and-graphs/790/
+	// My submission
+	class Solution {
+	    int position;
+	    TreeNode result;
+	    
+	    public int kthSmallest(TreeNode root, int k) {
+	        position = 1;
+	        result = new TreeNode(-1);
+	        helper(root, k);
+	        return result.val;
+	    }
+	    
+	    private void helper(TreeNode root, int k) {
+	        if(root == null) return;
+	        helper(root.left, k);
+	        if(position++ == k) {
+	            result = root;
+	            return;
+	        }
+	        helper(root.right, k);
+	    }
+	    
+	    // https://leetcode.com/explore/interview/card/top-interview-questions-medium/108/trees-and-graphs/790/
+	    public int kthSmallest_(TreeNode root, int k) {
+	        if(root == null) return -1;
+	        Deque<TreeNode> stack = new LinkedList<>();
+	        TreeNode itr = root;
+	        int position = 1;
+	        
+	        while(!stack.isEmpty() || itr != null) {
+	            if(itr != null) {
+	                stack.push(itr);
+	                itr = itr.left;
+	            } else {
+	                itr = stack.pop();
+	                if(k == position) return itr.val;
+	                ++position;
+	                itr = itr.right;    
+	            }
+	        }
+	        
+	        return -1;
+	    }
+	}
 }

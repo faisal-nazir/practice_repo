@@ -43,15 +43,21 @@ public class CourseSchedule_III {
 		Queue<Integer> queue = new LinkedList<>();
 		int[] indegree = new int[numCourses];
 		int count = 0, semesterCount = 0;
+		
+		
 		for (int i = 0; i < numCourses; i++)
 			graph[i] = new LinkedList<Integer>();
+		
 		for (int[] pair : prerequisites) {
 			graph[pair[1]].add(pair[0]);
 			indegree[pair[0]]++;
 		}
+		
 		for (int i = 0; i < indegree.length; i++)
 			if (indegree[i] == 0)
 				queue.offer(i);
+		
+		
 		while (!queue.isEmpty()) {
 			int size = queue.size();
 			for(int i = 0; i < size; ++i) {

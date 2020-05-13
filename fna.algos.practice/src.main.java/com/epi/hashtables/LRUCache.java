@@ -2,10 +2,12 @@ package com.epi.hashtables;
 
 import java.util.*;
 
+// EPI - 13.3 Implement an ISBN cache
 public class LRUCache {
 
 	LinkedHashMap<Integer, Integer> map;
 	
+	@SuppressWarnings("serial")
 	public LRUCache(final int capacity) {
 		map = new LinkedHashMap<Integer, Integer>(capacity, 1.0f, true) {
 			@Override
@@ -14,6 +16,7 @@ public class LRUCache {
 			}
 			
 		};
+		
 	}
 	
 	public Integer lookup(Integer key) {

@@ -17,23 +17,51 @@ public class ReverseBits {
 				
 	}
 	
-//	public static int reverseBits(int x) {
-//		int res = 0;
-//		for(int i = 1; i <= 16; ++i)  {
-//			int l = 1 << (31-i);
-//			int r = 1 << i;
-//			if((x&l) !=  (x&r)) {
-//				x ^= l;
-//				x ^= r;
-//			}
-//		}
-//		 
-//	}
+	// EPI 5.3 - Reverse Bits
+	// Brute force version
+	public static int reverseBits(int x) {
+		for(int i = 0; i < 16; ++i)  {
+			if((x >>> (31-i) & 1) != ((x >>> i) & 1)){
+				int bitMask = (1 << (31-i)) | (1 << i);
+				x ^= bitMask;
+			}
+			
+		}
+		return x;
+	}
+	
+	// simpler version of above idea
+	public static int reverseBits_02(int x) {
+		int l = 31;
+		int r = 0;
+		while(l > r) {
+			if (((x >>> l) & 1) != ((x >>> r) & 1)) {
+				int bitMask = (1 << l) | (1 << r);
+				x ^= bitMask;
+			}
+			--l;
+			++r;
+		}
+		return x;
+	}
+	
+	
+	// https://leetcode.com/problems/reverse-bits/discuss/54746/Java-Solution-and-Optimization
+	// Simplest version
+	public static int reverseBits_03(int x) {
+		int res = 0;
+		for(int i = 0; i < 32; ++i) {
+			res += ((x >>> i) & 1);
+			//x >>>= 1; // CATCH: must do unsigned shift
+			if(i < 31) // CATCH: for last digit, don't shift!
+				res <<= 1;	
+		}
+		return res;
+	}
+	
 	
 	public static void main(String[] args) {
-		List<Integer> list = Arrays.asList(1, 2, 3, 4);
-		for(int i : list) {
-			System.out.print(i + " ");
-		}
+//		System.out.println(reverseBits_03(43261596));
+		System.out.println(reverseBits_03(47));
 	}
 }

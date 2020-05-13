@@ -16,7 +16,7 @@ public class MinimumSizeSubarraySum {
 	 **/
 
 	// https://leetcode.com/problems/minimum-size-subarray-sum/discuss/59078/Accepted-clean-Java-O(n)-solution-(two-pointers)
-	public int minSubArrayLen(int s, int[] a) {
+	public static int minSubArrayLen(int s, int[] a) {
 		if (a == null || a.length == 0)
 			return 0;
 
@@ -60,6 +60,12 @@ public class MinimumSizeSubarraySum {
 			}
 		}
 		return lo;
+	}
+	
+	public static void main(String[] args) {
+		int[] nums = {2,3,1,2,4,3};
+		int t = 7;
+		System.out.println(minSubArrayLen(t, nums));
 	}
 
 }

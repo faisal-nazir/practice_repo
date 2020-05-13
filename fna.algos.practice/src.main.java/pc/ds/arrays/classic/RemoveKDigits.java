@@ -1,5 +1,10 @@
 package pc.ds.arrays.classic;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
+
+
 public class RemoveKDigits {
 
 	/**
@@ -31,7 +36,8 @@ public class RemoveKDigits {
 			int i = 0;
 			while (i < n && sb.charAt(i) <= sb.charAt(i + 1))
 				i++;
-			sb.delete(i, i + 1);
+//			sb.delete(i, i + 1);
+			sb.deleteCharAt(i);
 			k--;
 		}
 		// trim leading zeros
@@ -68,7 +74,37 @@ public class RemoveKDigits {
 	}
 
 	public static void main(String[] args) {
-		String s = "1432219";
-		System.out.print(removeKdigits_02(s, 3));
+		String s = "1432219"; //234 //134 // 124 // 123
+		System.out.print(removeKdigits(s, 3));
+	}
+	
+	private static String removeKdigits(String num, int k) {
+		Deque<Character> s = new LinkedList<>();
+		char[] A = num.toCharArray();
+		
+		// remove peak elements
+		for(int i = 0; i < A.length; ++i) {
+			char c  = A[i];
+			while(k > 0 && s.size() > 0 && s.peek() > c ) {
+				s.pop();
+				--k;
+			}
+			s.push(c);
+		}
+		
+		// convert stack entries to string
+		StringBuilder sb = new StringBuilder();
+		while(!s.isEmpty()) {
+			sb.insert(0, s.pop());
+		}
+		
+		// remove leading zeros
+		int i = 0;
+		while(i < sb.length() && sb.charAt(i) == '0') {
+			++i;
+		}
+		sb.delete(0, i);
+		
+		return (sb.length() == 0) ? "0" : sb.toString(); 
 	}
 }

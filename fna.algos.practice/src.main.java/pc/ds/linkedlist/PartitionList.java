@@ -50,4 +50,32 @@ public class PartitionList {
 		} else
 			return lt_head;
 	}
+	
+	
+	// Nick white - youtube version
+	private Node partition(Node head, int k) {
+		if(head == null) return null;
+		Node before_head = new Node(0);
+		Node before = before_head;
+		Node after_head = new Node(0);
+		Node after = after_head;
+		
+		while(head != null) {
+			if(head.val < k) {
+				before.next = head;
+				before = before.next;
+			} else {
+				after.next = head;
+				after = after.next;
+			}
+			
+			head = head.next;
+		}
+		
+		after.next = null;
+		before.next = after_head.next;
+		
+		return before_head.next;
+		
+	}
 }

@@ -44,7 +44,8 @@ public class WordSearch {
 	
 	public static void main(String[] args) {
 		String word = "ABCCED";
-		System.out.print(search(word, getGrid()));
+		String word2 = "ABCB";
+		System.out.print(search(word2, getGrid()));
 	}
 	
 	private static List<List<Character>> getGrid() {
@@ -58,5 +59,12 @@ public class WordSearch {
 		grid.add(third);
 		
 		return grid;
+		
+		/** 
+		 * This case is not working :(
+		 * [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+			"ABCB"
+		 **/
+		 
 	}
 }

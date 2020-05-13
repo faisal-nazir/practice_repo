@@ -1,5 +1,6 @@
 package ctci.recursion.dp;
 
+import java.util.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -76,5 +77,49 @@ public class Parenthesis {
 		}
 
 	}
+	
+	
+	// https://leetcode.com/problems/generate-parentheses/solution/
+	public static class Solution {
+	    public List<String> generateParenthesis(int n) {
+	        List<String> ans = new ArrayList<>();
+	        backtrack(ans, "", 0, 0, n);
+	        return ans;
+	    }
+
+	    public void backtrack(List<String> ans, String cur, int open, int close, int max){
+	        if (cur.length() == max * 2) {
+	            ans.add(cur);
+	            return;
+	        }
+
+	        if (open < max)
+	            backtrack(ans, cur+"(", open+1, close, max);
+	        if (close < open)
+	            backtrack(ans, cur+")", open, close+1, max);
+	    }
+	}
+	
+	
+	// https://leetcode.com/explore/interview/card/top-interview-questions-medium/109/backtracking/794/
+	// My submission
+	public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        if(n <= 0) return res;
+        helper(n, "", 0, 0, res);
+        return res;
+    }
+    
+    private void helper(int n, String soFar, int open, int closed, List<String> res) {
+        if(open >= n && closed >= n) {
+            res.add(soFar);
+            return;
+        }
+        if(open < n) 
+            helper(n, soFar+'(', open+1, closed, res);
+        if(closed < open)
+            helper(n, soFar+')', open, closed+1, res);
+        
+    }
 	
 }

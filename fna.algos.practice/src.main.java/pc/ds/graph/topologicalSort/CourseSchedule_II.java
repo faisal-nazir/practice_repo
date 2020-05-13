@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
@@ -101,4 +102,60 @@ public class CourseSchedule_II {
 	    order.push(from);
 	    return true;
 	}
+	
+	// my submission on leetcode
+	public static int[] findOrder_02(int numCourses, int[][] prerequisites) {
+        if(numCourses == 0 || prerequisites == null || prerequisites.length == 0) return new int[0];
+        
+        int[] indegree = new int[numCourses];
+        List<Integer>[] graph = new ArrayList[numCourses];
+        ArrayList<Integer> res = new ArrayList<>();
+        
+        for(int i = 0; i < numCourses; ++i) {
+            graph[i] = new ArrayList<Integer>();
+        }
+        
+        for(int[] edge : prerequisites) {
+            int course = edge[0];
+            int preReq = edge[1];
+
+            indegree[course]++;
+            graph[preReq].add(course);
+        }
+        
+        Queue<Integer> q = new LinkedList<>();        
+        for(int i = 0; i < indegree.length; ++i) {
+            if(indegree[i] == 0) 
+                q.offer(i);
+        }
+        
+        if(q.isEmpty()) return new int[0];
+        
+        int count = 0;
+        while(!q.isEmpty()) {
+            int courseTaken = q.poll();
+            res.add(courseTaken);
+            ++count;
+            for(int dependentCourse : graph[courseTaken]) {
+                indegree[dependentCourse]--;
+                if(indegree[dependentCourse] == 0) {
+                    q.offer(dependentCourse);
+                }
+            }
+        }
+        
+        int[] output = new int[res.size()];
+        for(int i = 0; i < res.size(); ++i) {
+            output[i] = res.get(i);
+        }
+        
+        return count == numCourses ? output : new int[0];
+        
+    }
+	
+	public static void main(String[] args) {
+		int[] res = findOrder_02(1, new int[0][0]);
+		
+	}
+	
 }

@@ -96,5 +96,38 @@ public class LongestSubStringWithoutRepeatingCharacter {
 		String input =  "bacabcabcdaab";
 		System.out.println(lengthOfLongestSubstring_01(input));
 		System.out.println(length(input));
+		input = "abcabcbb";
+		System.out.println(lengthOfLongestSubstring_simple(input));
 	}
+	
+	// https://leetcode.com/explore/interview/card/top-interview-questions-medium/103/array-and-strings/779/
+	// my submission
+	public static int lengthOfLongestSubstring_simple(String s) {
+        int res = 0;
+        if(s == null || s.length() == 0) return res;
+        int[] map = new int[128];
+        char[] A = s.toCharArray();
+        
+        int left = 0, right = 0, counter = 0;
+        
+        while(right < A.length) {
+            char c = A[right];
+            map[c]++;
+            right++;
+            if(map[c] > 1) {
+                counter++;            
+            } 
+            
+            while(counter > 0) {
+                c = A[left];
+                map[c]--;
+                left++;
+                if(map[c] == 1) {
+                    counter--;
+                }
+            }
+            res = Math.max(res, right-left);
+        }
+        return res;
+    }
 }

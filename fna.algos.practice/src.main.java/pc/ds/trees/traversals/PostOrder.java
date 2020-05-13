@@ -54,6 +54,10 @@ public class PostOrder {
 		TreeNode root = createTree();
 		System.out.println("recursive");
 		traverse(root);
+		System.out.println();
+		print(postOrderWithStack(root));
+		System.out.println();
+		print(postOrderWithOutStack(root));
 	}
 
 	private static TreeNode createTree() {
@@ -87,5 +91,50 @@ public class PostOrder {
 			}
 		}
 		return result;
+	}
+	
+	//
+	public static List<Integer> postOrderWithStack(TreeNode root) {
+		LinkedList<Integer> res = new LinkedList<>();
+		if(root == null) return res;
+		Deque<TreeNode> stack = new LinkedList<>();
+		stack.push(root);
+		
+		while(!stack.isEmpty()) {
+			TreeNode n = stack.pop();
+			res.addFirst(n.val);
+			if(n.left != null)
+				stack.push(n.left);
+			if(n.right != null) 
+				stack.push(n.right);
+		}
+		
+		return res;
+		
+	}
+	
+	public static List<Integer> postOrderWithOutStack(TreeNode root) {
+		LinkedList<Integer> res = new LinkedList<>();
+		if(root == null) return res;
+		Deque<TreeNode> q = new LinkedList<>();
+		q.add(root);
+		
+		while(!q.isEmpty()) {
+			TreeNode n = q.poll();
+			res.add(n.val);
+			if(n.right != null)
+				q.add(n.right);
+			if(n.left != null) 
+				q.add(n.left);
+		}
+		
+		return res;
+		
+	}
+	
+	private static void print(List<Integer> list) {
+		for(Integer n : list) {
+			System.out.print(n + ",");
+		}
 	}
 }

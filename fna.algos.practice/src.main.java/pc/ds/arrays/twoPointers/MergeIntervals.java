@@ -1,5 +1,6 @@
 package pc.ds.arrays.twoPointers;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -37,7 +38,9 @@ public class MergeIntervals {
     }
 
     public static List<Interval> merge(List<Interval> intervals) {
-        Collections.sort(intervals, new IntervalComparator());
+//        Collections.sort(intervals, new IntervalComparator());
+        
+        Collections.sort(intervals, (a, b)-> a.start - b.start );
 
         LinkedList<Interval> merged = new LinkedList<Interval>();
         for (Interval interval : intervals) {
@@ -54,5 +57,32 @@ public class MergeIntervals {
         }
 
         return merged;
+    }
+    
+    public static void main(String[] args) {
+    	List<Interval> list = getIntervals(); 
+    	List<Interval> res = merge(list);
+    	print(res);
+    }
+    
+    private static List<Interval> getIntervals() {
+    	Interval a = new Interval(1, 3);
+    	Interval b = new Interval(2, 6);
+    	Interval c = new Interval(8, 10);
+    	Interval d = new Interval(15, 18);
+    	
+    	List<Interval> list =  new ArrayList<>();
+    	list.add(a);
+    	list.add(b);
+    	list.add(c);
+    	list.add(d);
+    	
+    	return list;
+    }
+    
+    private static void print(List<Interval> list) {
+    	for(Interval i : list) {
+    		System.out.println(i.start + ", " + i.end);
+    	}
     }
 }

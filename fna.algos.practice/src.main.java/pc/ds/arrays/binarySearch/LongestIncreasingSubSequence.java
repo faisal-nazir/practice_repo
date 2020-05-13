@@ -68,7 +68,7 @@ public class LongestIncreasingSubSequence {
 	}
 
 	// https://leetcode.com/problems/longest-increasing-subsequence/discuss/74825/Short-Java-solution-using-DP-O(n-log-n)
-	// https://www.youtube.com/watch?v=1RpMc3fv0y4
+	// https://www.youtube.com/watch?v=1RpMc3fv0y4 (Thumbs up video)
 	public static int lengthOfLIS_02(int[] nums) {
 		int[] dp = new int[nums.length];
 		int len = 0;

@@ -1,6 +1,7 @@
 package pc.ds.graph.topologicalSort;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -89,6 +90,121 @@ public class CourseSchedule_I {
         }
         visited[course] = false;
         return true;
+    }
+    
+    
+    // my submission
+    // 
+    // topological sort - using stack 
+    // with out explicit graph it is slow coz it has to search for adjacets
+    
+    public boolean canFinish_01(int numCourses, int[][] prerequisites) {
+    
+        int[] indegree = new int[numCourses];
+        
+        for(int[] edge : prerequisites) {
+            indegree[edge[0]]++;
+        }
+        
+        Deque<Integer> stack = new LinkedList<>();
+        for(int i = 0; i < indegree.length; ++i) {
+            if(indegree[i] == 0) 
+                stack.push(i);
+        }
+        
+        if(stack.isEmpty()) return false; // no starting node found
+        
+        int counter = 0;
+        while(!stack.isEmpty()) {
+            int courseTaken = stack.pop();
+            ++counter;
+            for(int[] edge : prerequisites) {
+                if(edge[1] == courseTaken) {
+                    indegree[edge[0]]--;
+                    if(indegree[edge[0]] == 0)
+                        stack.push(edge[0]);
+                }
+            }
+        }
+        
+        return counter == numCourses;
+    }
+    
+    
+    // topological sort
+    // same version as above but using queue instead of stack
+    // for some reason, this was considered faster than the stack based solution by leetcode
+    public boolean canFinish_02(int numCourses, int[][] prerequisites) {
+    
+        int[] indegree = new int[numCourses];
+        
+        for(int[] edge : prerequisites) {
+            indegree[edge[0]]++;
+        }
+        
+        Deque<Integer> q = new LinkedList<>();
+        for(int i = 0; i < indegree.length; ++i) {
+            if(indegree[i] == 0) 
+                q.offer(i);
+        }
+        
+        if(q.isEmpty()) return false; // no starting node found
+        
+        int counter = 0;
+        while(!q.isEmpty()) {
+            int courseTaken = q.poll();
+            ++counter;
+            for(int[] edge : prerequisites) {
+                if(edge[1] == courseTaken) {
+                    indegree[edge[0]]--;
+                    if(indegree[edge[0]] == 0)
+                        q.offer(edge[0]);
+                }
+            }
+        }
+        
+        return counter == numCourses;
+    }
+    
+    // topological sort - with graph
+    // faster than the two solutions above
+    public boolean canFinish_03(int numCourses, int[][] prerequisites) {
+    
+        int[] indegree = new int[numCourses];
+        List<Integer>[] graph = new LinkedList[numCourses];
+        
+        for(int i = 0; i < numCourses; ++i) {
+            graph[i] = new LinkedList<>();
+        }
+        
+        for(int[] edge : prerequisites) {
+            indegree[edge[0]]++;
+            graph[edge[1]].add(edge[0]);
+        }
+        
+        
+        
+        Deque<Integer> q = new LinkedList<>();
+        for(int i = 0; i < indegree.length; ++i) {
+            if(indegree[i] == 0) 
+                q.offer(i);
+        }
+        
+        if(q.isEmpty()) return false; // no starting node found
+        
+        int counter = 0;
+        while(!q.isEmpty()) {
+            int courseTaken = q.poll();
+            ++counter;
+            for(int dependentCourse : graph[courseTaken]) {
+                indegree[dependentCourse]--;
+                if(indegree[dependentCourse] == 0)
+                    q.offer(dependentCourse);
+                
+            }
+        }
+        
+        return counter == numCourses;
     }
 
 }

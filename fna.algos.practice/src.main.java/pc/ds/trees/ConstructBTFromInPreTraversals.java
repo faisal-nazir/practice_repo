@@ -43,4 +43,33 @@ public class ConstructBTFromInPreTraversals {
         root.right= buildTree(preOrder, inOrderMap, iIndex + 1, end, preIndex + (iIndex - start + 1));
         return root;
     }
+    
+    // https://leetcode.com/explore/interview/card/top-interview-questions-medium/108/trees-and-graphs/788/
+    private static class Solution {
+        static int pre_index;
+        
+        public static TreeNode buildTree(int[] preorder, int[] inorder) {
+            Map<Integer, Integer> map = new HashMap<>();
+            pre_index = 0;
+            int i = 0;
+            for(int val : inorder) {
+                map.put(val, i++);
+            }
+            
+            return helper(map, preorder, inorder, 0, inorder.length-1);
+        }
+        
+        private static TreeNode helper(Map<Integer,Integer> map, int[] preorder, int[] inorder, int start, int end) {
+            if(start > end) return null;
+            
+            int mid = map.get(preorder[pre_index]);        
+            TreeNode root = new TreeNode(preorder[pre_index]);
+            ++pre_index;
+            
+            root.left = helper(map, preorder, inorder, start, mid-1);
+            root.right = helper(map, preorder, inorder, mid+1, end);
+            
+            return root;
+        }
+    }
 }

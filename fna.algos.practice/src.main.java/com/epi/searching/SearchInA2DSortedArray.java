@@ -37,4 +37,32 @@ public class SearchInA2DSortedArray {
 		}
 		return false;
 	}
+	
+	// https://leetcode.com/explore/interview/card/top-interview-questions-medium/110/sorting-and-searching/806/
+	public static boolean searchMatrix_02(int[][] matrix, int target) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) return false;
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int start = 0;
+        int end = (rows*cols)-1;
+        
+        while(start <= end) {
+            int mid = (start+end) >>> 1;
+            int midValue = matrix[mid/cols][mid%cols];
+            System.out.println(midValue);
+            if(target == midValue) {
+                return true;
+            } else if(target < midValue) {
+                end = mid-1;
+            } else {
+                start= mid+1;
+            }
+        }
+        return false;
+    }
+	
+	public static void main(String[] args) {
+		int[][] matrix = new int[][] { {1,4},{2,5}};
+		System.out.println(searchMatrix_02(matrix, 2)? "PRESENT" : "ABSENT");
+	}
 }

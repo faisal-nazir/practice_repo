@@ -31,4 +31,23 @@ public class IncreasingTripletSubsequence {
 		}
 		return false;
 	}
+	
+	// https://leetcode.com/explore/interview/card/top-interview-questions-medium/103/array-and-strings/781/
+	public boolean increasingTripletSubsequence(int[] nums) {
+        int i = Integer.MAX_VALUE;
+        int j = Integer.MAX_VALUE;
+        int k = Integer.MAX_VALUE;
+        
+        for(int itr = 0; itr < nums.length; ++itr) {
+            int val = nums[itr];
+            if(val <= i) {
+                i = val;
+            } else if( val <= j) {
+                j = val;
+            } else if(val <= k) {
+                k = val;
+            }
+        }
+        return i != Integer.MAX_VALUE && j != Integer.MAX_VALUE && k != Integer.MAX_VALUE;
+    }
 }

@@ -64,4 +64,9 @@ public class InorderTraversal {
 		Node root = getTree();
 		traverse(root);
 	}
+	
+	private List<Integer> inOrder_Traversal(Node root) {
+		List<Integer> res = new ArrayList<>();
+		return res;
+	}
 }

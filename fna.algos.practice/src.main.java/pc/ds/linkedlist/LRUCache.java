@@ -74,15 +74,15 @@ public class LRUCache {
         
     }
  
-    private void addToHead(Node h) {
+    private void addToHead(Node n) {
         
         if(head == null) {
-            head = tail = h;
+            head = tail = n;
         } else {
-            h.next = head;
-            head.prev = h;
-            h.prev = null;
-            head = h;
+            n.next = head;
+            head.prev = n;
+            n.prev = null;
+            head = n;
         }
     }   
     
@@ -97,19 +97,19 @@ public class LRUCache {
         tail = tail.prev;
     }
     
-    private void moveToHead(Node h) {
+    private void moveToHead(Node n) {
         
-        if(h == head)   return;
+        if(n == head)   return;
         
-        if(h == tail) {
-            h.prev.next = null;
+        if(n == tail) {
+            n.prev.next = null;
             tail = tail.prev;
         } else {
-            h.prev.next = h.next;
-            h.next.prev = h.prev;
+            n.prev.next = n.next;
+            n.next.prev = n.prev;
         }
         
-        addToHead(h);
+        addToHead(n);
     }
     
     static class Node {

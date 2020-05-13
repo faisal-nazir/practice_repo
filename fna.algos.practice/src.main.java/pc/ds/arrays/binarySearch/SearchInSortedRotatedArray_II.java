@@ -22,6 +22,7 @@ public class SearchInSortedRotatedArray_II {
 	 * and why?
 	 **/
 
+	// https://leetcode.com/problems/search-in-rotated-sorted-array-ii/discuss/28202/Neat-JAVA-solution-using-binary-search	
 	public boolean search(int[] nums, int target) {
 		if (nums == null || nums.length <= 0)
 			return false;

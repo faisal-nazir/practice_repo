@@ -1,6 +1,7 @@
 package pc.ds.arrays.twoPointers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class InsertInterval {
 
@@ -36,13 +37,13 @@ public class InsertInterval {
 		ArrayList<Interval> result = new ArrayList<Interval>();
 
 		for (Interval interval : intervals) {
-			if (interval.end < newInterval.start) {
+			if (interval.end < newInterval.start) { // we have not yet reached the insertion interval
 				result.add(interval);
-			} else if (interval.start > newInterval.end) {
+			} else if (interval.start > newInterval.end) { // moved past the insertion interval
 				result.add(newInterval);
 				newInterval = interval;
 			} else if (interval.end >= newInterval.start
-					|| interval.start <= newInterval.end) {
+					|| interval.start <= newInterval.end) { // its an overlap either on start or end.
 				newInterval = new Interval(Math.min(interval.start,
 						newInterval.start), Math.max(newInterval.end,
 						interval.end));
@@ -53,5 +54,34 @@ public class InsertInterval {
 
 		return result;
 	}
+	
+	public static void main(String[] args) {
+    	List<Interval> list = getIntervals(); 
+    	List<Interval> res = insert(new ArrayList<Interval>(list), new Interval(4,8));
+    	print(res);
+    }
+	
+	 private static List<Interval> getIntervals() {
+	    	Interval a = new Interval(1, 2);
+	    	Interval b = new Interval(3, 5);
+	    	Interval c = new Interval(6, 7);
+	    	Interval d = new Interval(8, 10);
+	    	Interval e = new Interval(12, 16);
+	    	
+	    	List<Interval> list =  new ArrayList<>();
+	    	list.add(a);
+	    	list.add(b);
+	    	list.add(c);
+	    	list.add(d);
+	    	list.add(e);
+	    	
+	    	return list;
+	    }
+	    
+	    private static void print(List<Interval> list) {
+	    	for(Interval i : list) {
+	    		System.out.println(i.start + ", " + i.end);
+	    	}
+	    }
 	
 }

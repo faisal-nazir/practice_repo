@@ -59,6 +59,8 @@ public class PaintABooleanMatirx {
 		helper(matrix, x, y, visited);
 	}
 	
+	// TODO: check the solution for NumberOfIsland and remove the use of Cell class.
+	
 	private static void helper(boolean[][] matrix, int x, int y, Set<Cell> visited) {
 		int[][] directions = new int[][] { {1, 0}, { 0, 1}, {-1, 0}, {0, -1}};
 		boolean color = matrix[x][y];
