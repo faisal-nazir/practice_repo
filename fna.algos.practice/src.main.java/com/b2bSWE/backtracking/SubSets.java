@@ -52,25 +52,28 @@ public class SubSets {
 	    return list;
 	}
 
-	private static void backtrack(List<List<Integer>> list , List<Integer> tempList, int [] nums, int start){
-	    list.add(new ArrayList<>(tempList));
-	    for(int i = start; i < nums.length; i++){
-	        tempList.add(nums[i]);
-	        backtrack(list, tempList, nums, i + 1);
-	        tempList.remove(tempList.size() - 1);
+	private static void backtrack(List<List<Integer>> res , List<Integer> subSet, int [] nums, int idx){
+	    res.add(new ArrayList<>(subSet));
+	    for(int i = idx; i < nums.length; i++){
+	        subSet.add(nums[i]);
+	        System.out.println("idx = " + idx + " , " + "i = " + i + " subset = " + print(subSet));
+	        backtrack(res, subSet, nums, idx+1);
+	        subSet.remove(subSet.size() - 1);
 	    }
 	}
 	
 	public static void main(String[] args) {
 		int[] nums = {1, 2, 3};
-		List<List<Integer>> subSets = subsets(nums);
-		for(List<Integer> set : subSets) {
-			System.out.print("{ ");
-			for(int i : set) {
-				System.out.print(i + ",");
-			}
-			System.out.print(" }");
-			System.out.println();
+		subsets(nums);
+	}
+	
+	private static String print(List<Integer> subSet) {
+		StringBuilder res = new StringBuilder();
+		res.append("{ ");
+		for(int val : subSet) {
+			res.append(val + " ");
 		}
+		res.append("}");
+		return res.toString();
 	}
 }

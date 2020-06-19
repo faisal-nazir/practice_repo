@@ -18,6 +18,7 @@ public class Permutation {
 		}
 		for(int i = start; i < nums.size(); ++i) {
 			Collections.swap(nums, i, start);
+			System.out.println("idx = " + start + " , " + "i = " + i + " permutation = " + getString(nums));
 			solve(nums, start+1, permutations);
 			Collections.swap(nums, i, start);
 		}
@@ -25,8 +26,8 @@ public class Permutation {
 
 	public static void main(String[] args) {
 		Integer[] nums = new Integer[] {7, 5, 3};
-		List<List<Integer>> permutations = getPermutations(Arrays.asList(nums));
-		print(permutations);
+		getPermutations(Arrays.asList(nums));
+		//print(permutations);
 	}
 
 	private static void print(List<List<Integer>> permutations) {
@@ -38,6 +39,16 @@ public class Permutation {
 			System.out.print(" }");
 			System.out.println();
 		}
+	}
+	
+	private static String getString(List<Integer> subSet) {
+		StringBuilder res = new StringBuilder();
+		res.append("{ ");
+		for(int val : subSet) {
+			res.append(val + " ");
+		}
+		res.append("}");
+		return res.toString();
 	}
 		
 }

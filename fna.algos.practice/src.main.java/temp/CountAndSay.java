@@ -35,7 +35,7 @@ public class CountAndSay {
 	// 312211
 	
 	public static void main(String[] args) {
-		System.out.println(countAndSay(6));
+		System.out.println(countAndSay_03(4));
 	}
 	
 	
@@ -68,5 +68,31 @@ public class CountAndSay {
             builder.append(val);
         }
         return builder.toString();
+    }
+    
+    
+    public static String countAndSay_03(int n) {
+        if(n == 1) return "1";
+        String seq = countAndSay_03(n-1);
+        return generateNext(seq);
+    }
+    
+    public static String generateNext(String seq) {
+        if(seq == null || seq.isEmpty()) return seq;
+        StringBuilder sb = new StringBuilder();
+        
+        int i = 0;
+        while(i < seq.length()) {
+            char c = seq.charAt(i);
+            int count = 0;
+            while(i < seq.length() && seq.charAt(i) == c) {
+            	++count;
+                ++i;
+            }
+            sb.append(c);
+            sb.append(String.valueOf(count));   
+        }
+        
+        return sb.toString();
     }
 }

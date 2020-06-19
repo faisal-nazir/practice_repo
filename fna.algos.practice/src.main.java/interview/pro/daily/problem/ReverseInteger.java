@@ -41,5 +41,28 @@ public class ReverseInteger {
         }
         return rev;
     }
+	
+	public static int reverse_04(int x) {
+        boolean isNegative = false;
+        if(x < 0) {
+            isNegative = true;
+        }
+        
+        long res = 0;
+        while(x != 0) {
+            res = res * 10 + (x % 10);
+            x /= 10;
+        }
+        
+        if(res >= Integer.MAX_VALUE || res <= Integer.MIN_VALUE)
+        	return 0;
+        
+        return isNegative? (int)(-1 * res): (int)res;
+    }
+	
+	public static void main(String[] args) {
+		int x = -2147483648;
+		System.out.println(reverse_04(x));
+	}
 		
 }

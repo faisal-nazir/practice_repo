@@ -1,5 +1,7 @@
 package pc.ds.arrays.dfs;
 
+import java.util.Stack;
+
 public class ShortestPalindrome {
 
 	/** Given a string S, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.
@@ -28,9 +30,8 @@ public class ShortestPalindrome {
 	}
 	
 	public static void main(String[] args) {
-		String s = "aacecaadab";
-//		String s = "abcd";
-		System.out.println(shortestPalindrome_01(s));
+		String s = "aaaaaaaaaaaaaaaaaaaa";
+		System.out.println(shortestPalindrome(s));
 	}
 	
 	public static String shortestPalindrome_02(String s) {
@@ -73,4 +74,38 @@ public class ShortestPalindrome {
 	 
 		return sb.append(s).toString();
 	}
+	
+	
+	// My leetcode submission
+	// check this for KMP version
+	// https://leetcode.com/problems/shortest-palindrome/discuss/60113/Clean-KMP-solution-with-super-detailed-explanation
+	public static String shortestPalindrome(String s) {
+        if(isPalindrome(s)) return s;
+        Stack<Character> stack = new Stack();
+        for(char c : s.toCharArray())
+            stack.push(c);
+        
+        String prefix = "";
+        String cand = "";
+        while(!stack.isEmpty()) {
+            prefix = prefix + stack.pop();
+            cand = prefix + s;
+            if(isPalindrome(cand))
+                return cand;
+        }
+        
+        return isPalindrome(cand)? cand : ""; 
+    }
+    
+    private static boolean isPalindrome(String s) {
+        int i = 0;
+        int j = s.length()-1;
+        while(i < j) {
+            if(s.charAt(i) != s.charAt(j))
+                return false;
+            ++i;
+            --j;
+        }
+        return true;
+    }
 }

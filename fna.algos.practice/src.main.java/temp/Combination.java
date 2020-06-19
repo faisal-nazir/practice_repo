@@ -48,4 +48,25 @@ public class Combination {
 			System.out.println();
 		}
 	}
+	
+	// My leetcode submission
+	public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> result = new ArrayList();
+        if(n <=0 || k > n) return result;
+        find(n, k, 1, new ArrayList<Integer>(), result);
+        return result;
+    }
+    
+    public void find(int n, int k, int idx, List<Integer> current, List<List<Integer>> result) {
+        if(current.size() == k) {
+            result.add(new ArrayList<Integer>(current));
+            return;
+        }
+        
+        for(int i = idx; i <= n; ++i) {
+            current.add(i);
+            find(n, k, i+1, current, result);
+            current.remove(current.size()-1);
+        }
+    }
 }

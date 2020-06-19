@@ -33,8 +33,8 @@ public class CombinationSum_II {
 	} 
 	
 	public static void main(String[] args) {
-		int[] nums = {2,5,2,1,2};
-		List<List<Integer>> subSets = combinationSum2(nums, 5);
+		int[] nums = {10,1,2,7,6,1,5};
+		List<List<Integer>> subSets = combinationSum_II(nums, 8);
 		for(List<Integer> set : subSets) {
 			System.out.print("{ ");
 			for(int i : set) {
@@ -44,5 +44,46 @@ public class CombinationSum_II {
 			System.out.println();
 		}
 	}
+	
+	
+	// My leetcode submission
+	public static List<List<Integer>> combinationSum_II(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList();
+        if(candidates == null || candidates.length == 0) return res;
+        Arrays.sort(candidates);
+        find(candidates, 0, new ArrayList<Integer>(), target, res);
+        return res;
+    }
+    
+    public static void find(int[] candidates, int idx, List<Integer> currentSum, int target, List<List<Integer>> res) {
+        if(target == 0) {
+            res.add(new ArrayList<>(currentSum));
+            return;
+        }
+        
+        if(target < 0)
+            return;
+        
+        for(int i = idx; i < candidates.length; ++i) {
+            if(i == idx || candidates[i-1] != candidates[i]) {
+                currentSum.add(candidates[i]);
+                
+                System.out.println("idx = " + idx + " , " + "i = " + i + " currentSum = " + print(currentSum));
+                find(candidates, i+1, currentSum, target-candidates[i], res);
+                currentSum.remove(currentSum.size()-1);    
+            }
+        }
+    }
+    
+    private static String print(List<Integer> list) {
+		StringBuilder res = new StringBuilder();
+		res.append("{ ");
+		for(int val : list) {
+			res.append(val + " ");
+		}
+		res.append("}");
+		return res.toString();
+	}
+    
 }
 

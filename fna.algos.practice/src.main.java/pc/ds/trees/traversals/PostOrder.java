@@ -40,10 +40,11 @@ public class PostOrder {
 			} else {
 				TreeNode top = stack.peek();
 				if (top.right != null && prev != top.right) {
-					stack.push(top.right);
+					itr = top.right;
 				} else {
 					System.out.print(top.val + ",");
 					prev = stack.pop();
+					itr = null;
 				}
 			}
 
@@ -55,22 +56,22 @@ public class PostOrder {
 		System.out.println("recursive");
 		traverse(root);
 		System.out.println();
-		print(postOrderWithStack(root));
-		System.out.println();
-		print(postOrderWithOutStack(root));
+		print(root);
+//		print(postOrderWithStack(root));
+//		System.out.println();
+//		print(postOrderWithQueue(root));
 	}
 
 	private static TreeNode createTree() {
-		TreeNode root = new TreeNode(5);
-		root.left = new TreeNode(2);
-		root.right = new TreeNode(6);
+		TreeNode root = new TreeNode(6);
+		root.left = new TreeNode(3);
+		root.right = new TreeNode(5);
 
 		root.left.left = new TreeNode(1);
-		root.left.right = new TreeNode(4);
-		root.left.right.left = new TreeNode(3);
+		root.left.right = new TreeNode(2);
+		
 
-		root.right.right = new TreeNode(7);
-		root.right.right.right = new TreeNode(8);
+		root.right.left = new TreeNode(4);
 
 		return root;
 	}
@@ -113,7 +114,7 @@ public class PostOrder {
 		
 	}
 	
-	public static List<Integer> postOrderWithOutStack(TreeNode root) {
+	public static List<Integer> postOrderWithQueue(TreeNode root) {
 		LinkedList<Integer> res = new LinkedList<>();
 		if(root == null) return res;
 		Deque<TreeNode> q = new LinkedList<>();
@@ -121,7 +122,7 @@ public class PostOrder {
 		
 		while(!q.isEmpty()) {
 			TreeNode n = q.poll();
-			res.add(n.val);
+			res.addFirst(n.val);
 			if(n.right != null)
 				q.add(n.right);
 			if(n.left != null) 

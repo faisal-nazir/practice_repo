@@ -30,10 +30,17 @@ public class WordSearch {
 	}
 	
 	private static boolean exist(String word, int idx, int row, int col, List<List<Character>> grid, List<List<Boolean>> visited) {
-		if(idx == word.length()) return true;
+		if(idx == word.length()) {
+			return true;
+		}
 		if(row < 0 || col < 0 || row >= grid.size() || col >= grid.get(row).size() || word.charAt(idx) != grid.get(row).get(col))
 			return false;
+		
+		if(visited.get(row).get(col))
+			return false;
+		
 		visited.get(row).set(col, true);
+		System.out.println(row + " , " + col + " , " + idx + " , " + word.length());
 		boolean result = exist(word, idx+1, row-1, col, grid, visited) ||
 				exist(word, idx+1, row, col-1, grid, visited) ||
 				exist(word, idx+1, row+1, col, grid, visited) ||
