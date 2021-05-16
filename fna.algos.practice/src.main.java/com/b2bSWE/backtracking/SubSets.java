@@ -39,9 +39,10 @@ public class SubSets {
 			subSets.add(new ArrayList<Integer>(currSet));
 			return;
 		}
+		
 		currSet.add(nums[start]); // make a choice
 		helper(subSets, nums, currSet, start+1); // recurse on this choice
-		currSet.remove(currSet.size()-1); // un-choose
+		currSet.remove(currSet.size()-1); // un-choose		
 		helper(subSets, nums, currSet, start+1); // recurse
 	}
 	
@@ -64,7 +65,11 @@ public class SubSets {
 	
 	public static void main(String[] args) {
 		int[] nums = {1, 2, 3};
-		subsets(nums);
+		List<List<Integer>> subsets = getSubsets(nums);
+		for(List<Integer> subset : subsets) {
+			System.out.print(subset);
+			System.out.println();
+		}
 	}
 	
 	private static String print(List<Integer> subSet) {
