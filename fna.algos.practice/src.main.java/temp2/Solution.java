@@ -11,8 +11,5 @@ public class Solution {
 		for(int val : arr) {
 			System.out.print(val + " ");
 		}
-	}
-	
-	
-	
+	}	
 }

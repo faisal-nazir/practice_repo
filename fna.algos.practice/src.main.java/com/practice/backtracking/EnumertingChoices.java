@@ -44,7 +44,8 @@ public class EnumertingChoices {
 	public static void main(String[] args) {
 		indent = "";
 		EnumertingChoices c = new EnumertingChoices();
-		c.foo1(5);
+		//c.foo1(5);
+		c.foo2(5);
 		//c.fooEvenOdd(10, 2, 1, true);
 	}
 	

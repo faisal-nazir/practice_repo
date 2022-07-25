@@ -182,8 +182,6 @@ public class CourseSchedule_I {
             graph[edge[1]].add(edge[0]);
         }
         
-        
-        
         Deque<Integer> q = new LinkedList<>();
         for(int i = 0; i < indegree.length; ++i) {
             if(indegree[i] == 0) 

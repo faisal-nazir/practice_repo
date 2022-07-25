@@ -6,6 +6,8 @@ public class SearchInA2DSortedArray {
 	// EPI-12.6: Search in a sorted 2D array
 	
 	// O(m+n) complexity where m = rows and n = columns
+	// https://leetcode.com/problems/search-a-2d-matrix-ii/
+	
 	public static boolean searchMatrix(int[][] M, int target) {
 		int r = 0, c = M[0].length-1; // starting from top-right corner
 		while(r < M.length && c >= 0) {
